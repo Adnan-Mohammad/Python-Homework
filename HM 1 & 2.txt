@@ -1,0 +1,71 @@
+How did you make sure the program will guess the number in fewest number of tries?
+
+I gave the count of min, max, and mid of the number 1 - 100, and designed in such a way that it asks a number if it is no then it asks whether its greater than certain no as so on it continues asking and will find the exact number.
+
+
+How did you make program keep asking user if they would like to keep playing until they say "no"?
+
+I inserted nested if and else statements in order to continuation of game, untill the user says no, as soon as the used says no it will be guessing the numbers.
+
+(I will compare your answer to your submitted program to grade this question, if you did not submit the program, please state so)
+
+import math
+def guess_number(min,max,count,mid):
+    count=count+1
+    if mid>100:
+        print("The number cannot exceed 100")
+        return count
+    answer=input("Is it "+str(mid)+" ? (yes/no) ")
+    if answer == "no":
+      greater=input("Is the number larger than "+str(mid)+" ? (yes/no) ")
+      if greater=="yes":
+         return guess_number(mid+1,max,count,math.ceil((mid+max)/2))
+      else:
+         max=mid-1
+         return guess_number(min,max,count,math.floor((max+min)/2))
+    else:
+        return count
+name=input("Hi, What is your Name ")
+print("Hello "+name+"! Lets play a game!\nThink of a random number from 1 to 100,and I'll try to guess it!")
+min=1
+max=100
+play_more="yes"
+while play_more=="yes":
+    if play_more == "yes":
+        result=guess_number(min,max,0,(min+max)//2)
+        print("Hey! I got it in "+str(result)+" tries!")
+        play_more=input("Do you want to play more? ")
+    else:
+        play_more="no"
+print("Ok Bye, Have a great day!​")
+
+
+----------------------------------------------------------------------------------------------
+
+In 1-3 sentences, explain your approach for solving program 2 in Homework 2 (shuffle the string).
+
+I used for loop in iteration of statements where it can shuffle the string with initialization, condition and increment or decrement.
+
+(I will compare your answer to your submitted program to grade this question, if you did not submit the program, please state so)
+
+
+string=input("Enter string : ")
+lst=[]
+print("Enter array of length "+str(len(string))+"")
+for i in range(0,len(string)):
+    ele=int(input("indices["+str(i)+"] : "))
+    lst.append(ele)
+new_string=list(string)
+
+for i in range(0,len(lst)):
+    for j in range(i+1,len(lst)):
+        if(lst[i] > lst[j]):    
+            temp = lst[i]    
+            lst[i] = lst[j]    
+            lst[j] = temp
+
+            temp2=new_string[i]
+            new_string[i]=new_string[j]
+            new_string[j]=temp2
+
+print("Output: "+str("".join(new_string))) 
